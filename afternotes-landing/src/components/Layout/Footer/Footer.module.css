@@ -1,0 +1,39 @@
+.footer {
+  background-color: #fff;
+  padding-block: 2rem;
+  text-align: center;
+  color: #1a1a1a;
+  font-size: 1.4rem;
+  font-weight: 300;
+  min-height: 20vh;
+  display: grid;
+  place-content: center;
+}
+.footer h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: min(90%, 1400px);
+  margin-inline: auto;
+}
+
+.container p {
+  margin-bottom: 2rem;
+}
+.container > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+}
+
+.container > div a {
+  width: 100%;
+  display: inline-block;
+}

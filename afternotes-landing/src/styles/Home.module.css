@@ -1,0 +1,247 @@
+.banner {
+  min-height: 50vh;
+  background-color: #fff;
+  color: #121212;
+  /* padding: 4rem 0; */
+  text-align: center;
+  position: relative;
+  z-index: 9;
+  padding-bottom: 5rem;
+}
+
+.banner ::after {
+  content: '';
+  isolation: isolate;
+  position: absolute;
+  height: 70rem;
+  width: 100%;
+  z-index: -1;
+  left: 0;
+  bottom: 0;
+  background-color: #f2f2f2;
+  /* padding: 4rem 0; */
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 35vh;
+}
+
+.container h2 {
+  font-weight: 600;
+  font-size: clamp(3rem, 10vw + 1rem, 4.5rem);
+  margin-block: 1rem;
+  line-height: 1.2;
+}
+
+.container p {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.container button {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.container button {
+  border-radius: 0.5rem;
+  padding: 0.3rem 1rem;
+  width: 15rem;
+  margin-top: 4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.4rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-inline: auto;
+}
+
+.picture {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 530px;
+  width: 900px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.copy {
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.6rem;
+}
+.container > div > button {
+  padding: 1.5rem 2rem;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--clr-primary);
+  color: #f2f6fa;
+  font-weight: 500;
+  line-height: 1rem;
+}
+
+.container_options {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.banner_options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+  gap: 2rem;
+}
+
+.bars {
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.banner_options > div {
+  padding: 1rem 4rem;
+}
+
+.banner_options > div h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.banner_options > div p {
+  font-weight: 400;
+  font-size: 1.4rem;
+  text-align: left;
+  width: 25rem;
+  color: rgba(0, 0, 0, 0.6);
+  /* margin: 0 auto; */
+}
+
+.get {
+  background-color: #f2f2f2;
+  padding-block: 10rem;
+}
+
+.get > div {
+  background-color: #fff;
+  width: min(90%, 800px);
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.get > div h2 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.get > div p {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.4rem;
+  max-width: 90%;
+  margin-inline: auto;
+}
+
+.get > div button {
+  border-radius: 0.5rem;
+  padding: 0.3rem 1rem;
+  width: 15rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.4rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-inline: auto;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.section_folders {
+  width: min(90%, 1200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-inline: auto;
+  padding: 10rem;
+}
+
+.section_folders img {
+  width: 40rem;
+}
+
+.section_folders h2 {
+  font-weight: 500;
+  max-width: 40rem;
+  line-height: 1.4;
+  font-size: 3.5rem;
+}
+
+.section_folders p {
+  /* font-weight: 500; */
+  max-width: 40rem;
+  line-height: 1.2;
+  /* font-size: 3.5rem; */
+  margin-top: 1.5rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    margin-top: 4rem;
+  }
+
+  .section_folders {
+    flex-direction: column;
+    padding: 10rem 2rem;
+  }
+  .section_folders img {
+    width: 90%;
+  }
+
+  .banner_options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .get {
+    background-color: #f2f2f2;
+    padding-block: 5rem;
+  }
+
+  .get > div h2 {
+    font-size: 2.5rem;
+  }
+  .get > div {
+    width: 80%;
+  }
+  .picture {
+    margin-top: 5rem;
+    height: 210px;
+    width: 90%;
+  }
+}

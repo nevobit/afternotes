@@ -1,0 +1,255 @@
+.container {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 25rem 25rem 1fr;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #fafafa;
+  padding: 2rem;
+  position: relative;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.user picture {
+  height: 4rem;
+  width: 4rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.user h3 {
+  font-weight: 600;
+}
+
+.field {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.field i {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 2rem;
+  height: 100%;
+}
+
+.field input {
+  background-color: transparent;
+  height: 100%;
+  padding: 0;
+  font-size: 1.4rem;
+}
+
+.field input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.notes {
+  padding: 2rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.editor {
+  padding: 2rem;
+}
+
+.buttons {
+  display: grid;
+  gap: 2rem;
+  position: absolute;
+  width: 85%;
+  bottom: 5rem;
+}
+
+.buttons button {
+  text-align: left;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.buttons button i {
+  font-size: 2rem;
+}
+
+.folders {
+  margin-top: 5rem;
+}
+
+.folders h4 {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.folder {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.folder h3 {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.folder .dots {
+  position: relative;
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-right: 1rem;
+}
+
+.folder .dots::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.folder .dots::before {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* NOTES */
+
+.notes h2 {
+  font-weight: 600;
+  font-size: 2.4rem;
+  margin-bottom: 5rem;
+}
+
+.notes .add {
+  height: 4rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: left;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.notes .add i {
+  font-size: 2.5rem;
+}
+
+.note {
+  margin-bottom: 2rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.note span {
+  display: block;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.note h3 {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.note.selected {
+  margin-bottom: 2rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.note.selected span {
+  display: block;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.note.selected h3 {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.header {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+  padding-block: 2rem;
+}
+
+.header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.editor input {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-block: 2rem;
+  color: rgba(0, 0, 0, 0.9);
+  height: 4rem;
+}
+
+.details > div {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.details > div > span {
+  display: block;
+  width: 12rem;
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+}
+
+.add_tag {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}

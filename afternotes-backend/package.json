@@ -1,0 +1,25 @@
+{
+  "name": "afternotes-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev server/index.ts"
+  },
+  "keywords": [],
+  "author": "Nestor Mosquera",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.2.0",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.13.0",
+    "mongoose": "^6.9.3",
+    "typescript": "^4.9.5",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.0",
+    "@types/uuid": "^9.0.1",
+    "ts-node-dev": "^2.0.0"
+  }
+}
