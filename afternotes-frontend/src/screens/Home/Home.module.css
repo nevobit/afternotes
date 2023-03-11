@@ -253,3 +253,10 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 }
+
+
+.tag{
+  background-color: #fafafa;
+  font-size: 1.4rem !important;
+  padding: 1rem;
+}
