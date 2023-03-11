@@ -2,52 +2,21 @@ import React, { useState } from "react";
 import styles from "./Home.module.css";
 import TextEditor from "@/components/Shared/TextEditor";
 import { Note } from "@/types/models/notes";
-import { v4 as UUID } from "uuid";
 import storage, { STORAGE_KEY } from "@/services/storage";
-import debounce from "@/utilities/debounce";
 import { PASSPHRASE_STORE_KEY } from "../Signin";
-
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-const loadNotes = () => {
-  const noteUuids = storage.get<string[]>(STORAGE_KEY, []);
-  const notes: Record<string, Note> = {};
-  noteUuids.forEach((uuid) => {
-    const note = storage.get<Note>(`${STORAGE_KEY}:${uuid}`);
-    notes[note.uuid] = {
-      ...note,
-      updatedAt: new Date(note.updatedAt),
-    };
-  });
-  return notes;
-};
-
-const saveNote = debounce((note: Note) => {
-  const noteUuids = storage.get<string[]>(STORAGE_KEY, []);
-  const noteUuidsWithoutNote = noteUuids.filter((uuid) => uuid !== note.uuid);
-  storage.set(STORAGE_KEY, [...noteUuidsWithoutNote, note.uuid]);
-  storage.set(`${STORAGE_KEY}:${note.uuid}`, note);
-}, 1000);
+import { months } from "@/utilities/months";
+import saveNote from "@/services/save-note";
+import loadNotes from "@/services/load-notes";
+import handleCreateNewNote from "@/hooks/useNewNote";
 
 type Props = {
   email: string;
 };
+
 const Home = ({ email }: Props) => {
   const [notes, setNotes] = useState<Record<string, Note>>(() => loadNotes());
   const [activeNoteUuid, setActiveNoteUuid] = useState<string | null>(null);
+
   const [search, setSearch] = useState<string>("");
 
   const activeNote = activeNoteUuid ? notes[activeNoteUuid] : null;
@@ -77,23 +46,6 @@ const Home = ({ email }: Props) => {
     }));
     saveNote(updatedNote);
   };
-  const handleCreateNewNote = () => {
-    const newNote = {
-      uuid: UUID(),
-      title: "New note",
-      content: "<h1>New note</h1>",
-      tags: [],
-      updatedAt: new Date(),
-    };
-
-    setNotes((notes) => ({
-      ...notes,
-      [newNote.uuid]: newNote,
-    }));
-
-    setActiveNoteUuid(newNote.uuid);
-    saveNote(newNote);
-  };
 
   const handleChengeActiveNote = (uuid: string) => {
     setActiveNoteUuid(uuid);
@@ -108,7 +60,7 @@ const Home = ({ email }: Props) => {
       <div className={styles.sidebar}>
         <div className={styles.user}>
           <picture>
-            <img src="/avatar.png" alt="Profile photo" />
+            <img src="/avatar.png" alt="Profile avatar" />
           </picture>
           <h3>Floyd Lawton</h3>
         </div>
@@ -131,6 +83,7 @@ const Home = ({ email }: Props) => {
             </h3>
             <span className={styles.dots}></span>
           </div>
+          
         </div>
 
         <div className={styles.buttons}>
@@ -149,7 +102,7 @@ const Home = ({ email }: Props) => {
       </div>
       <div className={styles.notes}>
         <h2>My Notes</h2>
-        <button className={styles.add} onClick={handleCreateNewNote}>
+        <button className={styles.add} onClick={() => handleCreateNewNote(setNotes, setActiveNoteUuid)}>
           <i className="bx bx-plus"></i> Add new note
         </button>
         <div>

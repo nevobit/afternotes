@@ -9,6 +9,7 @@ export const NoteSchemaMongo = new Schema<Note>(
     tags: { type: [String] },
     folder: { type: String },
     createdBy: { type: String },
+    user: { type: String }
   },
   {
     versionKey: false,
