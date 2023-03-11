@@ -81,9 +81,9 @@ const Signin = ({ setUserData }: Props) => {
             />
           </div>
           <button className={styles.login}>Iniciar sesion</button>
-          <a href="/" className={styles.forgot}>
+          {/* <a href="/" className={styles.forgot}>
             Forgot password
-          </a>
+          </a> */}
         </form>
       </div>
     </div>

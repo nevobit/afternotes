@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import styles from "./Home.module.css";
 import TextEditor from "@/components/Shared/TextEditor";
 import { Note } from "@/types/models/notes";
-import storage, { STORAGE_KEY } from "@/services/storage";
+import storage from "@/services/storage";
 import { PASSPHRASE_STORE_KEY } from "../Signin";
 import { months } from "@/utilities/months";
-import saveNote from "@/services/save-note";
 import loadNotes from "@/services/load-notes";
 import handleCreateNewNote from "@/hooks/useNewNote";
+import handleChangeNoteContent from "@/hooks/useChangeContent";
+import handleChangeNoteTitle from "@/hooks/useChangeTitle";
+import handleChangeNoteTag from "@/hooks/useChangeTags";
+import handleUpdateNoteTag from "@/hooks/useUpdateTags";
 
 type Props = {
   email: string;
@@ -16,40 +19,17 @@ type Props = {
 const Home = ({ email }: Props) => {
   const [notes, setNotes] = useState<Record<string, Note>>(() => loadNotes());
   const [activeNoteUuid, setActiveNoteUuid] = useState<string | null>(null);
-
   const [search, setSearch] = useState<string>("");
+  const [tag, setTag] = useState<string>("");
+  
 
   const activeNote = activeNoteUuid ? notes[activeNoteUuid] : null;
-
-  const hangleChangeNoteContent = (uuid: string | "", content: string) => {
-    const updatedNote = {
-      ...notes[uuid],
-      updatedAt: new Date(),
-      content,
-    };
-    setNotes((notes) => ({
-      ...notes,
-      [uuid]: updatedNote,
-    }));
-    saveNote(updatedNote);
-  };
-
-  const hangleChangeNoteTitle = (uuid: string | "", title: string) => {
-    const updatedNote = {
-      ...notes[uuid],
-      updatedAt: new Date(),
-      title,
-    };
-    setNotes((notes) => ({
-      ...notes,
-      [uuid]: updatedNote,
-    }));
-    saveNote(updatedNote);
-  };
 
   const handleChengeActiveNote = (uuid: string) => {
     setActiveNoteUuid(uuid);
   };
+  
+  console.log({activeNote})
 
   const noteList = Object.values(notes)
     .filter((note) => note.title.toLowerCase().includes(search?.toLowerCase()))
@@ -62,7 +42,7 @@ const Home = ({ email }: Props) => {
           <picture>
             <img src="/avatar.png" alt="Profile avatar" />
           </picture>
-          <h3>Floyd Lawton</h3>
+          <h3>Nestor Mosquera</h3>
         </div>
 
         <div className={styles.field}>
@@ -129,7 +109,7 @@ const Home = ({ email }: Props) => {
         <input
           value={activeNote?.title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            hangleChangeNoteTitle(activeNote?.uuid || "", e.target.value)
+            handleChangeNoteTitle(setNotes, notes, activeNote?.uuid || "", e.target.value)
           }
         />
 
@@ -152,8 +132,17 @@ const Home = ({ email }: Props) => {
           </div>
           <div>
             <span>Tags</span>{" "}
-            <p>
-              <button className={styles.add_tag}>
+            <p style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2rem'
+            }}>
+              
+              {activeNote?.tags.map((tag, index) => (
+                  <input className={styles.tag}  defaultValue={tag} onChange={(e) => handleUpdateNoteTag(setNotes, notes, activeNote?.uuid || "", e.target.value, index)}  />
+              ))}
+            
+              <button className={styles.add_tag} onClick={() => handleChangeNoteTag(setNotes, notes, activeNote?.uuid || "", tag)}>
                 <i className="bx bx-plus"></i> Add new tag
               </button>
             </p>
@@ -162,7 +151,7 @@ const Home = ({ email }: Props) => {
         <TextEditor
           value={activeNote?.content}
           setValue={(content: any) =>
-            hangleChangeNoteContent(activeNote?.uuid || "", content)
+            handleChangeNoteContent(setNotes, notes, activeNote?.uuid || "", content)
           }
         />
       </div>
